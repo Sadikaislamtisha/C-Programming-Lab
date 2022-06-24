@@ -1,0 +1,18 @@
+/*Sadika Islam Tisha
+Id:221-35-872*/
+#include <stdio.h>
+int main ()
+{
+
+    int i;
+
+    for (i=1; i<=10; i++)
+    {
+
+        printf("Hello World\n");
+    }
+
+    return 0;
+
+
+}
