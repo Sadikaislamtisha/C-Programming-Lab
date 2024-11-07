@@ -83,7 +83,7 @@
 <body>
 
     <div class="container">
-        <h2>Responsive Form</h2>
+        <h2>Registration Form</h2>
         <form>
             <div class="form-group">
                 <label for="name">Name:</label>
