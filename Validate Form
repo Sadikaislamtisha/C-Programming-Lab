@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Form Validation</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
+            background-color: #f2f2f2;
         }
 
-        /* Container styling */
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
+        .form-container {
+            width: 300px;
             padding: 20px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
             background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             text-align: center;
+            color: #333;
         }
 
         .form-group {
@@ -32,87 +35,83 @@
         label {
             display: block;
             margin-bottom: 5px;
+            color: #333;
         }
 
-        input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
+        input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 3px;
         }
 
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        input[type="submit"] {
+        button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
-        input[type="submit"]:hover {
-            background-color: #218838;
-        }
-
-        /* Media query for different screen sizes */
-        @media (max-width: 768px) {
-            .container {
-                background-color: #f8f9fa;
-                border-color: #007bff;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-                background-color: #e9ecef;
-                border-color: #6c757d;
-            }
-
-            input[type="submit"] {
-                font-size: 14px;
-            }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
+    <div class="form-container">
         <h2>Registration Form</h2>
-        <form>
+        <form id="registrationForm">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <input type="text" id="name" name="name">
             </div>
-
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="text" id="email" name="email">
             </div>
-            <div class="form-group">
-                <label for="number">Phone Number:</label>
-                <input type="number" id="number" name="number" placeholder="Enter your phone number" required>
-            </div>
-
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <input type="password" id="password" name="password">
             </div>
-
-            <div class="form-group">
-                <label>Gender:</label>
-                <label><input type="radio" name="gender" value="male" required> Male</label>
-                <label><input type="radio" name="gender" value="female" required> Female</label>
-            </div>
-
-            <input type="submit" value="Submit">
+            <button type="submit">Submit</button>
         </form>
     </div>
 
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            // Name validation: ensure name is not empty and contains only letters and spaces
+            const namePattern = /^[A-Za-z\s]+$/;
+            if (!namePattern.test(name)) {
+                alert("Please enter a valid name (letters and spaces only).");
+                return;  // Exit if name is invalid
+            }
+
+            // Email validation
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email.");
+                return;  // Exit if email is invalid
+            }
+            
+            // Password validation
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters.");
+                return;  // Exit if password is invalid
+            }
+            
+            // If form is valid, submit it
+            alert("Form submitted successfully!");
+        });
+    </script>
 </body>
 </html>
