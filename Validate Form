@@ -92,7 +92,7 @@
             // Name validation: ensure name is not empty and contains only letters and spaces
             const namePattern = /^[A-Za-z\s]+$/;
             if (!namePattern.test(name)) {
-                alert("Please enter a valid name (letters and spaces only).");
+                alert("Please enter a valid name.");
                 return;  // Exit if name is invalid
             }
 
